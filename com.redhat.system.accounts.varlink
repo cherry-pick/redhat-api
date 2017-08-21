@@ -18,3 +18,5 @@ method GetAccountByName(name: string) -> (account: Account)
 method AddAccount(account: Account) -> (account: Account)
 
 error AccountNotFound ()
+
+error AccountCreationFailed (field: string)
