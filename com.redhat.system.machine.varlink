@@ -1,0 +1,48 @@
+# Controls a machine and provides information about it.
+interface com.redhat.system.machine
+
+type OperatingSystem (
+  vendor: string,
+  product: string,
+  version: string,
+  url: string
+)
+
+# Detected virtualization of a machine.
+#
+# "id" is a short identifier, for example "kvm" or "docker".
+type Virtualization (
+  type: (none, vm, container),
+  id: string
+)
+
+method GetInfo() -> (
+  id: string,
+  os: OperatingSystem,
+  virtualization: Virtualization,
+  hostname: string,
+  description: string,
+  timezone: string,
+  locale: string
+)
+
+# Sets the hostname of the system.
+method SetHostname(hostname: string, description: string) -> ()
+
+# Sets the machine's system locale.
+method SetLocale(locale: string) -> ()
+
+# Set the machine's time zone.
+method SetTimezone(timezone: string) -> ()
+
+# Reboots the machine.
+#
+# After this call returns successfully, the connection to this service will be
+# closed.
+method Reboot() -> ()
+
+# Shuts down the machine.
+#
+# After this call returns successfully, the connection to this service will be
+# closed.
+method Shutdown() -> ()
