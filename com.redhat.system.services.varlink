@@ -1,0 +1,51 @@
+# List and manage services.
+interface com.redhat.system.services
+
+type Service (
+  name: string,
+  description: string,
+  start: (always, ondemand, never),
+  status: (active, inactive, failed)
+)
+
+# Fetches a service.
+#
+# Errors:
+#   ServiceNotFound
+method Get(service: string) -> (service: Service)
+
+# Fetches all services.
+method GetAll() -> (services: Service[])
+
+# Starts a service, if it is not already running.
+#
+# Errors:
+#   ServiceNotFound
+method Start(service: string) -> ()
+
+# Stops a service, if it is currently running.
+#
+# Errors:
+#   ServiceNotFound
+method Stop(service: string) -> ()
+
+# Restarts an already-running service.
+#
+# Errors:
+#   ServiceNotFound
+#   ServiceNotRunning
+method Restart(service: string) -> ()
+
+# Asks a service to reload its configuration.
+#
+# Errors:
+#   ServiceNotFound
+method ReloadConfig(service: string) -> ()
+
+# Sets the start type of a service. It doesn't start or stop the service.
+#
+# Errors:
+#   ServiceNotFound
+method SetStartType(service: string, start: (always, ondemand, never)) -> ()
+
+error ServiceNotFound (service: string)
