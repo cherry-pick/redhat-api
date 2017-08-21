@@ -9,14 +9,14 @@ type Account (
   shell: string
 )
 
-method GetAccounts() -> (accounts: Account[])
+method GetAll() -> (accounts: Account[])
 
-method GetAccountByUid(uid: int) -> (account: Account)
+method GetByUid(uid: int) -> (account: Account)
 
-method GetAccountByName(name: string) -> (account: Account)
+method GetByName(name: string) -> (account: Account)
 
-method AddAccount(account: Account) -> (account: Account)
+method Add(account: Account) -> (account: Account)
 
-error AccountNotFound ()
+error NotFound ()
 
-error AccountCreationFailed (field: string)
+error CreationFailed (field: string)
