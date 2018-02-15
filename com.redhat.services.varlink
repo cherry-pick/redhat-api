@@ -1,5 +1,5 @@
 # List and manage services.
-interface com.redhat.system.services
+interface com.redhat.services
 
 type Service (
   name: string,

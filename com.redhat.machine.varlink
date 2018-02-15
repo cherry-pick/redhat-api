@@ -1,5 +1,5 @@
 # Controls a machine and provides information about it.
-interface com.redhat.system.machine
+interface com.redhat.machine
 
 type OperatingSystem (
   vendor: string,
