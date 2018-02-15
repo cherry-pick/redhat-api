@@ -1,0 +1,59 @@
+# Package Management Interface
+interface com.redhat.packages
+
+type Version (
+  epoch: int,
+  version: string,
+  release: string,
+  architecture: string
+)
+
+type Package (
+  name: string,
+  vendor: string,
+  description: string,
+  version: Version,
+  repository: string,
+  installed: bool,
+  available: bool
+)
+
+type Progress (
+  stage: (download, install, setup, verify)
+  percentage: int,
+)
+
+type UpdateInfo (
+  id: string,
+  title: string,
+  description: string,
+  type: string[],
+  date: string,  
+  packages: Package[]
+)
+
+# List matching packages
+method List(packages: Package[]) -> (packages: Package[])
+
+# Installs or updates a list of given packages. If called with the "more"
+# flag, the service might return progress information in several
+# independent replies
+method Install(packages: Package[], dryrun: bool) -> (
+  packages: Package[],
+  progress: Progress
+)
+
+# Remove a list of given packages. If called with the "more"
+# flag, the service might return progress information in several
+# independent replies
+method Remove(packages: Package[], dryrun: bool) -> (
+  packages: Package[],
+  progress: Progress
+)
+
+# List updates for matching packages
+method ListUpdates(packages: Package[]) -> (updates: UpdateInfo[])
+
+error UnknownPackage(packages: Package[])
+error InstallationError(packages: Package[])
+error Busy()
