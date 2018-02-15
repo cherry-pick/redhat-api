@@ -19,8 +19,8 @@ type Package (
 )
 
 type Progress (
-  stage: (download, install, setup, verify)
-  percentage: int,
+  stage: (download, install, setup, verify),
+  percentage: int
 )
 
 type UpdateInfo (
@@ -28,7 +28,7 @@ type UpdateInfo (
   title: string,
   description: string,
   type: string[],
-  date: string,  
+  date: string,
   packages: Package[]
 )
 
@@ -54,6 +54,8 @@ method Remove(packages: Package[], dryrun: bool) -> (
 # List updates for matching packages
 method ListUpdates(packages: Package[]) -> (updates: UpdateInfo[])
 
-error UnknownPackage(packages: Package[])
-error InstallationError(packages: Package[])
-error Busy()
+error UnknownPackage (packages: Package[])
+
+error InstallationError (packages: Package[])
+
+error Busy ()

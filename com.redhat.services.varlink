@@ -46,7 +46,10 @@ method ReloadConfig(service: string) -> ()
 #
 # Errors:
 #   NotFound
-method SetStartType(service: string, start: (always, ondemand, never)) -> ()
+method SetStartType(
+  service: string,
+  start: (always, ondemand, never)
+) -> ()
 
 error NotFound (service: string)
 
