@@ -1,0 +1,14 @@
+# Query and monitor the log messages of a system.
+interface com.redhat.logging
+
+type Entry (
+  cursor: string,
+  time: string,
+  message: string,
+  process: string,
+  priority: string
+)
+
+# Monitor the log. Returns the @initial_lines most recent entries in the
+# first reply and then continuously replies when new entries are available.
+method Monitor(initial_lines: int) -> (entries: Entry[])
