@@ -1,0 +1,13 @@
+# Query and monitor kernel devices
+interface com.redhat.devices
+
+type Device (
+  device_path: string,
+  subsystem: string,
+  name: string,
+  node: string,
+  properties: (name: string, value: string)[]
+)
+
+# Subscribe to kernel device events
+method Monitor(subsystem: string) -> (event: string, devices: Device[])
