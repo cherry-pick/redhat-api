@@ -1,21 +1,16 @@
 # Provides information about network state
 interface com.redhat.network
 
-type NetdevInfo (
-  ifindex: int,
-  ifname: string
-)
+type NetdevInfo (ifindex: int, ifname: string)
 
-type Netdev (
-  ifindex: int,
-  ifname: string
-)
+type Netdev (ifindex: int, ifname: string)
 
 # Returns information about a network device
 method Info(ifindex: int) -> (info: NetdevInfo)
 
 # Lists all network devices
-method List() -> (netdevs: Netdev[])
+method List() -> (netdevs: []Netdev)
 
 error UnknownNetworkDevice ()
+
 error InvalidParameter ()

@@ -15,7 +15,7 @@ type Service (
 method Get(service: string) -> (service: Service)
 
 # Fetches all services.
-method GetAll() -> (services: Service[])
+method GetAll() -> (services: []Service)
 
 # Starts a service, if it is not already running.
 #

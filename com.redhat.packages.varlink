@@ -27,35 +27,35 @@ type UpdateInfo (
   id: string,
   title: string,
   description: string,
-  type: string[],
+  type: []string,
   date: string,
-  packages: Package[]
+  packages: []Package
 )
 
 # List matching packages
-method List(packages: Package[]) -> (packages: Package[])
+method List(packages: []Package) -> (packages: []Package)
 
 # Installs or updates a list of given packages. If called with the "more"
 # flag, the service might return progress information in several
 # independent replies
-method Install(packages: Package[], dryrun: bool) -> (
-  packages: Package[],
+method Install(packages: []Package, dryrun: bool) -> (
+  packages: []Package,
   progress: Progress
 )
 
 # Remove a list of given packages. If called with the "more"
 # flag, the service might return progress information in several
 # independent replies
-method Remove(packages: Package[], dryrun: bool) -> (
-  packages: Package[],
+method Remove(packages: []Package, dryrun: bool) -> (
+  packages: []Package,
   progress: Progress
 )
 
 # List updates for matching packages
-method ListUpdates(packages: Package[]) -> (updates: UpdateInfo[])
+method ListUpdates(packages: []Package) -> (updates: []UpdateInfo)
 
-error UnknownPackage (packages: Package[])
+error UnknownPackage (packages: []Package)
 
-error InstallationError (packages: Package[])
+error InstallationError (packages: []Package)
 
 error Busy ()

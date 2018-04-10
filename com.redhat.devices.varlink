@@ -6,8 +6,8 @@ type Device (
   subsystem: string,
   name: string,
   node: string,
-  properties: (name: string, value: string)[]
+  properties: [](name: string, value: string)
 )
 
 # Subscribe to kernel device events
-method Monitor(subsystem: string) -> (event: string, devices: Device[])
+method Monitor(subsystem: string) -> (event: string, devices: []Device)

@@ -11,4 +11,4 @@ type Entry (
 
 # Monitor the log. Returns the @initial_lines most recent entries in the
 # first reply and then continuously replies when new entries are available.
-method Monitor(initial_lines: int) -> (entries: Entry[])
+method Monitor(initial_lines: int) -> (entries: []Entry)
